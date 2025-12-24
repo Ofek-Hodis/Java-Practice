@@ -17,8 +17,12 @@ public class Number_Guessing {
         if (chooseRange.equalsIgnoreCase("yes")){
             System.out.print("Enter the lower limit of your guessing range: ");
             min = scanner.nextInt();
-            System.out.print("Enter the higher limit of your guessing range: ");
+            System.out.print("Enter the upper limit of your guessing range: ");
             max = scanner.nextInt();
+            while(max<min){
+                System.out.println("The upper limit must be bigger than the lower limit");
+                max = scanner.nextInt();
+            }
             max++; // Maximum limit in random function is non-inclusive so we increase the input by 1
         }
         // Verifying user input is "yes" or "no"
@@ -34,6 +38,11 @@ public class Number_Guessing {
         System.out.printf("Guess a number between %d and %d: ", min, (max-1));  // Formatting the limits
         do{
             guess = scanner.nextInt();
+            while (guess < min || guess >= max){
+                System.out.println("The number is out of the range!");
+                System.out.printf("Guess a number between %d and %d: ", min, (max-1));
+                guess = scanner.nextInt();
+            }
             if (guess < target){
                 System.out.println("Higher!");
             }
