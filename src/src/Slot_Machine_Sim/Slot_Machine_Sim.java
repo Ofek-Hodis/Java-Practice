@@ -58,7 +58,12 @@ public class Slot_Machine_Sim {
             }
         }
 
+        System.out.println("Game over! Your final balance is " + balance + " Dollars");
+
+        scanner.close();
+
     }
+    // Method for randomizing and returning an array of slots
     static String[] spinRow(){
         String[] symbols = {"❤️", "🍉", "💲", "🔔", "🍓"};
         String[] row = new String[3];
@@ -71,14 +76,17 @@ public class Slot_Machine_Sim {
         return row;
     }
 
+    // Method for taking the randomized slot array and outputting it neatly
     static void printRow(String[] row){
         System.out.println("********************************");
-        System.out.println(" " + String.join(" | ", row));
+        System.out.println(" " + String.join(" | ", row)); // Neatly connecting the three slots
         System.out.println("********************************");
     }
 
+    // Method for calculating payout according to the slot machine result
     static int getPayout(String[] row, int bet){
         if (row[0].equals(row[1]) && row[1].equals(row[2])){
+            // The value of the payout when all three symbols are identical changes based on the symbol
             return switch(row[0]){
                 case "🍓" -> bet*3;
                 case "🍉" -> bet*4;
@@ -90,7 +98,7 @@ public class Slot_Machine_Sim {
         }
 
         else if (row[0].equals(row[1]) || row[1].equals(row[2]) || row[0].equals(row[2])){
-            return bet*2;
+            return bet*2; // In case any symbol appears twice (and not three times) the payout is doubled
             };
 
         return 0;
